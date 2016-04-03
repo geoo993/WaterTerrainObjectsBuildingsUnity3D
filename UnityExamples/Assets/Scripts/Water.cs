@@ -11,7 +11,7 @@ public class Water : MonoBehaviour {
 
 	private Vector3[] vertices;
 
-	[Range(0.001f, 0.01f)] public float transitionSpeed = 0.005f;
+	[Range(0.001f, 0.01f)] public float transitionTime = 0.005f;
 
 	private Color color;
 	private Color PreviousColor;
@@ -95,7 +95,7 @@ public class Water : MonoBehaviour {
 	}
 	void wavesInWater()
 	{
-		smoothTime += transitionSpeed;
+		smoothTime += transitionTime;
 		if (smoothTime > 10) {
 
 			smoothTime = 0;
