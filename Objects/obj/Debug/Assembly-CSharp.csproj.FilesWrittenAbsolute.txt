@@ -1,0 +1,17 @@
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/obj/Debug/Assembly-CSharp.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/UnityEngine.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/UnityEditor.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Mono.Cecil.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Unity.DataContract.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/GeorgeQuentin/Desktop/GameDesignMajorProjectLCC/Objects/Temp/bin/Debug/Mono.Cecil.Mdb.dll
