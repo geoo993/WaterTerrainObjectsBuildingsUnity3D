@@ -22,7 +22,7 @@ public class PerlinNoiseColor : MonoBehaviour {
 			
 			for (int z = 0; z < size; z++) {
 
-				GameObject c = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
+				GameObject c = Instantiate(obj, new Vector3(this.transform.position.x+x, this.transform.position.y, this.transform.position.z+z), Quaternion.identity) as GameObject;
 
 				c.transform.parent = this.transform;
 				c.name = "c"+x+z;

@@ -44,6 +44,8 @@ public class TerrainPerlinNoise : MonoBehaviour {
 	void Start() 
 	{
 		terrain = Ground ();
+		terrain.transform.position = this.transform.position;
+
 		PerlinFractalDataArray();
 	}
 
