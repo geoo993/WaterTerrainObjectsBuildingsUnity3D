@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BinarySpaceParticioningSimple.cs" />
      <Compile Include="Assets\Scripts\Buildings.cs" />
      <Compile Include="Assets\Scripts\Collided.cs" />
+     <Compile Include="Assets\Scripts\Cone.cs" />
      <Compile Include="Assets\Scripts\ConnectWithLineRenderer.cs" />
      <Compile Include="Assets\Scripts\ConnectWithlines.cs" />
      <Compile Include="Assets\Scripts\CreateTerrain.cs" />
