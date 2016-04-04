@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 	
-public class GuizmoPoints : MonoBehaviour {
+public class GizmoPoints : MonoBehaviour {
 
 	public GameObject[] cubes = null; 
 

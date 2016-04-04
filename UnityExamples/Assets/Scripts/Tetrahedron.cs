@@ -33,7 +33,7 @@ public class Tetrahedron : MonoBehaviour {
 	public void Triangle()
 	{
 
-		this.name = "triangle";
+		this.name = "triangleTetrahedron";
 		this.tag = "Player";
 
 		MeshFilter meshFilter = GetComponent<MeshFilter>();

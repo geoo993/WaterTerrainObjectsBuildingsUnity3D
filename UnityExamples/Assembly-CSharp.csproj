@@ -55,12 +55,15 @@
      <Compile Include="Assets\Scripts\Cube.cs" />
      <Compile Include="Assets\Scripts\Delaunay.cs" />
      <Compile Include="Assets\Scripts\DestroyYou.cs" />
+     <Compile Include="Assets\Scripts\DynamicShape.cs" />
+     <Compile Include="Assets\Scripts\DynamicShapeWithMorph.cs" />
+     <Compile Include="Assets\Scripts\Gizmo.cs" />
+     <Compile Include="Assets\Scripts\GizmoPoints.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
-     <Compile Include="Assets\Scripts\Guizmo.cs" />
-     <Compile Include="Assets\Scripts\GuizmoPoints.cs" />
      <Compile Include="Assets\Scripts\PerlinNoiseColor.cs" />
      <Compile Include="Assets\Scripts\PerlinNoiseWaveMesh.cs" />
      <Compile Include="Assets\Scripts\Plane.cs" />
+     <Compile Include="Assets\Scripts\SquarePyramid.cs" />
      <Compile Include="Assets\Scripts\TerrainDiamondSquare.cs" />
      <Compile Include="Assets\Scripts\TerrainGenerator\ChunkCache.cs" />
      <Compile Include="Assets\Scripts\TerrainGenerator\LibNoise\Generator\Billow.cs" />

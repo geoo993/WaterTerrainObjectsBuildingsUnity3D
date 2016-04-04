@@ -186,7 +186,6 @@ public class Water : MonoBehaviour {
 		//renderer.material.shader = Shader.Find ("Particles/Alpha Blended");
 		renderer.material.shader = Shader.Find ("Particles/Additive");
 		renderer.material.mainTexture = texture;
-		//renderer.material.color = color;
 		renderer.material.SetColor ("_TintColor", color);
 
 

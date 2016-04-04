@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(LineRenderer)) ]
 
-public class Guizmo : MonoBehaviour {
+public class Gizmo : MonoBehaviour {
 
 
 
@@ -20,7 +20,7 @@ public class Guizmo : MonoBehaviour {
 	}
 
 	private IEnumerator Generate () {
-		WaitForSeconds wait = new WaitForSeconds(0.05f);
+		WaitForSeconds wait = new WaitForSeconds(0.5f);
 		vertices = new Vector3[(xSize + 1) * (ySize + 1)];
 
 		for (int i = 0, y = 0; y <= ySize; y++) {
