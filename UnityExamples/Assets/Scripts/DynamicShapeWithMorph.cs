@@ -56,6 +56,7 @@ public class DynamicShapeWithMorph : MonoBehaviour {
 			// Right face
 			v5, v6, v1, v2,
 
+
 			// Top face 
 			v7, v6, v4, v5,
 
@@ -133,7 +134,7 @@ public class DynamicShapeWithMorph : MonoBehaviour {
 		Vector2 u01 = new Vector2( 0f, 1f );
 		Vector2 u11 = new Vector2( 1f, 1f );
 
-		Vector2[] uvs = new Vector2[]
+		mesh.uv = new Vector2[]
 		{
 			// Front face uv
 			u01, u00, u11, u10,

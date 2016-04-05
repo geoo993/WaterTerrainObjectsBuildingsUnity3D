@@ -2,235 +2,397 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshCollider))]
+
 public class Buildings : MonoBehaviour {
 
-	private Mesh mesh;
-	private Vector3[] vertices;
+	public bool resetToCube = false;
+	public bool stop = false;
 
-	private MeshFilter filter;
-	//private Rigidbody meshRigidbody;
-	private MeshRenderer meshRenderer;
+	[Range(-5.0f,5.0f)] public float bottomlengthX = 1f; 
+	[Range(-5.0f,5.0f)] public float bottomlengthY = 1f; 
+	[Range(-5.0f,5.0f)] public float bottomlengthZ = 1f;  
+	[Range(-5.0f,5.0f)] public float midlengthX = 1f; 
+	[Range(-5.0f,5.0f)] public float midlengthY = 1f; 
+	[Range(-5.0f,5.0f)] public float midlengthZ = 1f; 
+	[Range(-5.0f,5.0f)] public float toplengthX = 1f; 
+	[Range(-5.0f,5.0f)] public float toplengthY = 1f; 
+	[Range(-5.0f,5.0f)] public float toplengthZ = 1f; 
+
+	Vector3 v0 = Vector3.zero; //left (bottom, front, left)
+	Vector3 v1 = Vector3.zero; //right (bottom, front, right)
+	Vector3 v2 = Vector3.zero; //right (bottom, back, right)
+	Vector3 v3 = Vector3.zero; //left (bottom, back, left)
+	Vector3 v4 = Vector3.zero; //left (top, front, left)
+	Vector3 v5 = Vector3.zero; //right (top, front, right)
+	Vector3 v6 = Vector3.zero; //right (top, back, right)
+	Vector3 v7 = Vector3.zero; //left (top, back, left)
+	Vector3 v8 = Vector3.zero; //left (mid, front, left)
+	Vector3 v9 = Vector3.zero; //right (mid, front, right)
+	Vector3 v10 = Vector3.zero; //right (mid, back, right)
+	Vector3 v11 = Vector3.zero; //left (mid, back, left)
+
+	float topTargetX = 1.0f;
+	float topTargetY = 1.0f;
+	float topTargetZ = 1.0f;
+	float topPreTargetX = 1.0f;
+	float topPreTargetY = 1.0f;
+	float topPreTargetZ = 1.0f;
+
+	float midTargetX = 1.0f;
+	float midTargetY = 0.0f;
+	float midTargetZ = 1.0f;
+	float midPreTargetX = 1.0f;
+	float midPreTargetY = 0.0f;
+	float midPreTargetZ = 1.0f;
+
+	float bottomTargetX = 1.0f;
+	float bottomTargetY = 1.0f;
+	float bottomTargetZ = 1.0f;
+	float bottomPreTargetX = 1.0f;
+	float bottomPreTargetY = 1.0f;
+	float bottomPreTargetZ = 1.0f;
+
+	private Color color;
+	private Color PreviousColor;
+	private Color TargetColor;
+
+	bool changeState = true;
+	float smoothTime = 0.0f;
+	float smoother = 0.1f;
+
+	[Range(0.001f, 0.05f)] public float transitionSpeed = 0.005f;
 
 	void Start ()
 	{
-		CreateBuildings();
+		this.name = "building Block";
+		//CreateCube ();	
 
 	}
-	GameObject CreateBuildings ()
+
+	void Update()
 	{
-		GameObject city = new GameObject ();
-		
-		for (var i = 0; i < 2000; i ++) {
-			
-			GameObject buildingMesh = CreateCube();
-			buildingMesh.transform.parent = city.transform;
-			buildingMesh.name = "cuboiddObject" + i;
-			
-			float xPos = Random.Range (-200.0f, 200.0f);
-			float zPos = Random.Range (-200.0f, 200.0f);
-			
-			float rotationY = Random.Range (0, Mathf.PI * 2);
-			float scaleWidth = (((Random.Range (0.0f, 1.0f) * Random.Range (0.0f, 1.0f) * Random.Range (0.0f, 1.0f) * Random.Range (0.0f, 1.0f)) * 50.0f) + 10);
-			float scaleHeight = (((Random.Range (0.0f, 1.0f) * Random.Range (0.0f, 1.0f) * Random.Range (0.0f, 1.0f) * scaleWidth) * 8) + 8);
-
-			buildingMesh.transform.position = new Vector3 (xPos, 0, zPos);
-			buildingMesh.transform.Rotate (0, rotationY, 0);
-			buildingMesh.transform.localScale = new Vector3 (scaleWidth, scaleHeight, scaleWidth);
-
+		if (!stop){
+			smoothTime += transitionSpeed;	
 		}
-		
-		city.transform.parent = this.transform;
-		return city;
+
+
+		if (smoothTime > 10) {
+
+			smoothTime = 0;
+			changeState = false;
+		}
+
+		if (changeState == false)
+		{
+			transitionSpeed =  Random.Range (0.01f, 0.05f);
+
+			if (!resetToCube) {
+				
+				topTargetX = Random.Range (-5.0f, 5.0f);
+				topTargetY = Random.Range (1.0f, 5.0f);
+				topTargetZ = Random.Range (-5.0f, 5.0f);
+				midTargetX = Random.Range (-5.0f, 5.0f);
+				midTargetY = Random.Range (0.0f, 4.0f);
+				midTargetZ = Random.Range (-5.0f, 5.0f);
+
+				bottomTargetX = Random.Range (-5.0f, 5.0f);
+				bottomTargetY = 1.0f;
+				bottomTargetZ = Random.Range (-5.0f, 5.0f);
+				TargetColor = new Color( Random.value, Random.value, Random.value, 1.0f);
+
+			} else {
+
+				topTargetX = 1.0f;
+				topTargetY = 1.0f;
+				topTargetZ = 1.0f;
+				midTargetX = 1.0f;
+				midTargetY = 0.0f;
+				midTargetZ = 1.0f;
+				bottomTargetX = 1.0f;
+				bottomTargetY = 1.0f;
+				bottomTargetZ = 1.0f;
+
+
+				TargetColor = Color.black;
+			}
+			topPreTargetX = toplengthX;
+			topPreTargetY = toplengthY;
+			topPreTargetZ = toplengthZ;
+			midPreTargetX = midlengthX;
+			midPreTargetY = midlengthY;
+			midPreTargetZ = midlengthZ;
+			bottomPreTargetX = bottomlengthX;
+			bottomPreTargetY = bottomlengthY;
+			bottomPreTargetZ = bottomlengthZ;
+			PreviousColor = color;
+
+			changeState = true;
+		}
+
+		toplengthX = Mathf.Lerp (topPreTargetX, topTargetX, smoother * smoothTime);			
+		toplengthY = Mathf.Lerp (topPreTargetY, topTargetY+midTargetY, smoother * smoothTime);	
+		toplengthZ = Mathf.Lerp (topPreTargetZ, topTargetZ, smoother * smoothTime);
+
+		midlengthX = Mathf.Lerp (midPreTargetX, midTargetX, smoother * smoothTime);			
+		midlengthY = Mathf.Lerp (midPreTargetY, midTargetY, smoother * smoothTime);
+		midlengthZ = Mathf.Lerp (midPreTargetZ, midTargetZ, smoother * smoothTime);
+
+		bottomlengthX = Mathf.Lerp (bottomPreTargetX, bottomTargetX, smoother * smoothTime);			
+		bottomlengthY = Mathf.Lerp (bottomPreTargetY, bottomTargetY, smoother * smoothTime);
+		bottomlengthZ = Mathf.Lerp (bottomPreTargetZ, bottomTargetZ, smoother * smoothTime);
+		color = Color.Lerp(PreviousColor, TargetColor, smoother * smoothTime);
+
+		CreateCube ();
+
+		//Debug.Log ("smoothtime:  "+smoothTime);
+
 	}
 
-	GameObject CreateCube()
+	private void CreateCube()
 	{
-		GameObject cube = new GameObject ();
-	
-		filter = cube.AddComponent< MeshFilter >();
-		mesh = filter.mesh;
+
+		MeshFilter meshFilter = GetComponent<MeshFilter>();
+		if (meshFilter==null){
+			Debug.LogError("MeshFilter not found!");
+			return;
+		}
+
+		Mesh mesh = meshFilter.sharedMesh;
+		//mesh = meshFilter.mesh;
+		if (mesh == null){
+			meshFilter.mesh = new Mesh();
+			mesh = meshFilter.sharedMesh;
+			//mesh = meshFilter.mesh;
+		}
+
 		mesh.Clear();
 		
-		float lengthX = 1f; 
-		float lengthY = 1f; 
-		float lengthZ = 1f;  
+		//cube details
+		v0 = new Vector3 (-toplengthX, toplengthY, toplengthZ); //left (top, front, left)
+		v1 = new Vector3 (toplengthX, toplengthY, toplengthZ); //right (top, front, right)
+		v2 = new Vector3 (toplengthX , toplengthY, -toplengthZ); //right (top, back, right)
+		v3 = new Vector3 (-toplengthX , toplengthY, -toplengthZ); //left (top, back, left)
 
+		v4 = new Vector3 (-midlengthX, midlengthY, midlengthZ ); //left (mid, front, left)
+		v5 = new Vector3 (midlengthX, midlengthY, midlengthZ ); //right (mid, front, right)
+		v6 = new Vector3 (midlengthX , midlengthY, -midlengthZ); //right (mid, back, right)
+		v7 = new Vector3 (-midlengthX , midlengthY , -midlengthZ); //left (mid, back, left)
 		
-		//region Vertices
-		Vector3 p0 = new Vector3( 0, 0, lengthZ );
-		Vector3 p1 = new Vector3( lengthX, 0, lengthZ );
-		Vector3 p2 = new Vector3( lengthX, 0, 0 );
-		Vector3 p3 = new Vector3( 0, 0, 0 );	
-		
-		Vector3 p4 = new Vector3( 0,	lengthY,  lengthZ );
-		Vector3 p5 = new Vector3( lengthX, 	lengthY,  lengthZ );
-		Vector3 p6 = new Vector3( lengthX, 	lengthY,  0 );
-		Vector3 p7 = new Vector3( 0,	lengthY,  0 );
 
-		vertices = new Vector3[]
-		{
-			// Bottom
-			p0, p1, p2, p3,
-			
-			// Left
-			p7, p4, p0, p3,
-			
-			// Front
-			p4, p5, p1, p0,
-			
-			// Back
-			p6, p7, p3, p2,
-			
-			// Right
-			p5, p6, p2, p1,
-			
-			// Top
-			p7, p6, p5, p4
+		v8 = new Vector3 (-bottomlengthX, -bottomlengthY, bottomlengthZ ); //left (bottom, front, left)
+		v9 = new Vector3 (bottomlengthX, -bottomlengthY, bottomlengthZ ); //right (bottom, front, right)
+		v10 = new Vector3 (bottomlengthX , -bottomlengthY, -bottomlengthZ); //right (bottom, back, right)
+		v11 = new Vector3 (-bottomlengthX , -bottomlengthY , -bottomlengthZ); //left (bottom, back, left)
+
+
+		//Add region Vertices
+		mesh.vertices = new Vector3[]{
+
+
+			// top Front face 
+			v0, v1, v4, v5,
+
+			// top Back face 
+			v2, v3, v6, v7,
+
+			// top Left face 
+			v3, v0, v7, v4,
+
+			// top Right face
+			v1, v2, v5, v6,
+
+
+
+			// bottom Front face 
+			v4, v5, v8, v9,
+
+
+			// bottom Back face 
+			v6, v7, v10, v11,
+
+			// bottom Left face 
+			v7, v4, v11, v8,
+
+			// bottom Right face
+			v5, v6, v9, v10,
+
+
+
+
+			// Top face 
+			v3, v2, v0, v1,
+
+			// Bottom face 
+			v8, v9, v11, v10
+
+
+
+
 		};
-		//endregion
-		
-		//		//region Normales
-		Vector3 up 	= Vector3.up;
-		Vector3 down 	= Vector3.down;
+		//end vertices region
+
+		//Add Triangles region 
+		//these are three point, and work clockwise to determine what side is visible
+		mesh.triangles = new int[]{
+
+			// top front face
+			0,2,3, // first triangle
+			3,1,0, // second triangle
+
+			// top back face
+			4,6,7, // first triangle
+			7,5,4, // second triangle
+
+			// top left face
+			8,10,11, // first triangle
+			11,9,8, // second triangle
+
+			// top right face
+			12,14,15, // first triangle
+			15,13,12, // second triangle
+
+
+			//bottom front face
+			16,18,19, // first triangle
+			19,17,16, // second triangle
+
+			//bottom back face
+			20,22,23, // first triangle
+			23,21,20, // second triangle
+
+			//bottom left face 
+			24,26,27, // first triangle
+			27,25,24, // second triangle
+
+			//bottom right face 
+			28,30,31, // first triangle
+			31,29,28, // second triangle
+
+
+
+			//top face 
+			32,34,35, // first triangle
+			35,33,32, // second triangle
+
+			//bottom face 
+			36,38,39, // first triangle
+			39,37,36 // second triangle
+
+		};
+		//end triangles region
+
+
+		//Normales vector3 region
 		Vector3 front 	= Vector3.forward;
 		Vector3 back 	= Vector3.back;
 		Vector3 left 	= Vector3.left;
 		Vector3 right 	= Vector3.right;
-		
-		Vector3[] normales = new Vector3[]
+		Vector3 up 		= Vector3.up;
+		Vector3 down 	= Vector3.down;
+
+		//Add Normales region
+		mesh.normals = new Vector3[]
 		{
-			// Bottom
-			down, down, down, down,
-			
-			// Left
-			left, left, left, left,
-			
-			// Front
+			// top Front face
 			front, front, front, front,
-			
-			// Back
+
+			// top Back face
 			back, back, back, back,
-			
-			// Right
+
+			// top Left face
+			left, left, left, left,
+
+			// top Right face
 			right, right, right, right,
-			
-			// Top
-			up, up, up, up
+
+
+			// bottom Front face
+			front, front, front, front,
+
+			// bottom Back face
+			back, back, back, back,
+
+			// bottom Left face
+			left, left, left, left,
+
+			// bottom Right face
+			right, right, right, right,
+
+
+
+			// Top face
+			up, up, up, up,
+
+			// Bottom face
+			down, down, down, down
+
 		};
-		//endregion	
+		//end Normales region
 
-		//top and bottom
-		Vector2 tbp1 = new Vector2( 0.68f, 0f);
-		Vector2 tbp2 = new Vector2( 1f, 0f );
-		Vector2 tbp3 = new Vector2( 1f, 1f );
-		Vector2 tbp4 = new Vector2( 0.68f, 1f );
-		
-		//rest
-		Vector2 rp1 = new Vector2( 0f, 0f );
-		Vector2 rp2 = new Vector2( 0.68f, 0f );
-		Vector2 rp3 = new Vector2( 0.68f, 1f );
-		Vector2 rp4 = new Vector2( 0f, 1f );
+		//Add vector2 regions 
+		Vector2 u00 = new Vector2( 0f, 0f );
+		Vector2 u10 = new Vector2( 1f, 0f );
+		Vector2 u01 = new Vector2( 0f, 1f );
+		Vector2 u11 = new Vector2( 1f, 1f );
 
-
-		Vector2[] uvs = new Vector2[]
+		//Add UVs region 
+		mesh.uv = new Vector2[]
 		{
-			// Bottom
-			//_11, _01, _00, _10,
-			tbp1,tbp2,tbp3,tbp4,
+			// Front face uv
+			u01, u00, u11, u10,
 
-			// Left
-			//_11, _01, _00, _10,
-			rp1,rp2,rp3,rp4,
+			// Back face uv
+			u01, u00, u11, u10,
 
-			// Front
-			//_11, _01, _00, _10,
-			rp1,rp2,rp3,rp4,
+			// Left face uv
+			u01, u00, u11, u10,
 
-			// Back
-			//_11, _01, _00, _10,
-			rp1,rp2,rp3,rp4,
-			
-			// Right
-			//_11, _01, _00, _10,
-			rp1,rp2,rp3,rp4,
-			
-			// Top
-			//_11, _01, _00, _10,
-			tbp1,tbp2,tbp3,tbp4
+			// Right face uv
+			u01, u00, u11, u10,
+
+
+
+			// Front face uv
+			u01, u00, u11, u10,
+
+			// Back face uv
+			u01, u00, u11, u10,
+
+			// Left face uv
+			u01, u00, u11, u10,
+
+			// Right face uv
+			u01, u00, u11, u10,
+
+
+			// Top face uv
+			u01, u00, u11, u10,
+
+			// Bottom face uv
+			u01, u00, u11, u10
 		};
-		//		//endregion
+		//End UVs region
 		
-		//region Triangles
-		int[] triangles = new int[]
-		{
-			// Bottom
-			3, 1, 0,
-			3, 2, 1,			
-			
-			// Left
-			3 + 4 * 1, 1 + 4 * 1, 0 + 4 * 1,
-			3 + 4 * 1, 2 + 4 * 1, 1 + 4 * 1,
-			
-			// Front
-			3 + 4 * 2, 1 + 4 * 2, 0 + 4 * 2,
-			3 + 4 * 2, 2 + 4 * 2, 1 + 4 * 2,
-			
-			// Back
-			3 + 4 * 3, 1 + 4 * 3, 0 + 4 * 3,
-			3 + 4 * 3, 2 + 4 * 3, 1 + 4 * 3,
-			
-			// Right
-			3 + 4 * 4, 1 + 4 * 4, 0 + 4 * 4,
-			3 + 4 * 4, 2 + 4 * 4, 1 + 4 * 4,
-			
-			// Top
-			3 + 4 * 5, 1 + 4 * 5, 0 + 4 * 5,
-			3 + 4 * 5, 2 + 4 * 5, 1 + 4 * 5,
-			
-		};
-		//endregion
-		
-		
-		mesh.vertices = vertices;
-		mesh.triangles = triangles;
-		mesh.uv = uvs;
-		mesh.normals = normales;
-		meshRenderer = cube.AddComponent<MeshRenderer> ();
 
-		//Material defaultMaterial = GetComponent<SpriteRenderer>().material;
-		Material material = new Material (Shader.Find ("Standard"));
-		material.color = Color.Lerp(Color.white, new Color((48.0f/255.0f),(48.0f/255.0f),(80.0f/255.0f)), Random.Range(0.0f, 1.0f));
+//		Texture texture = Resources.Load ("TextureComplete1") as Texture;
+//		material.mainTexture = texture;
 
-//		Texture texture1 = Resources.Load ("TextureComplete1") as Texture;
-//		Texture texture2 = Resources.Load ("TextureComplete2") as Texture;
-//		Texture texture3 = Resources.Load ("TextureComplete3") as Texture;
-//		Texture texture4 = Resources.Load ("TextureComplete4") as Texture;
-//		Texture texture5 = Resources.Load ("TextureComplete5") as Texture;
-//		Texture texture6 = Resources.Load ("TextureComplete6") as Texture;
-//		Texture texture7 = Resources.Load ("TextureComplete7") as Texture;
-//		Texture texture8 = Resources.Load ("TextureComplete8") as Texture;
-//		Texture texture9 = Resources.Load ("TextureComplete9") as Texture;
-//		Texture texture10 = Resources.Load ("TextureComplete10") as Texture;
 
-//		Texture[] texture = new Texture[] {
-//			texture1,texture2,texture3,texture4,texture5,
-//			texture6,texture7,texture8,texture9,texture10
-//		};
-//		material.mainTexture = texture[ Random.Range (0,10) ];
+		//MeshCollider meshCollider = cube.AddComponent<MeshCollider> ();
+		//meshCollider.isTrigger = false;
 
-		meshRenderer.material = material;
 
-		MeshCollider meshCollider = cube.AddComponent<MeshCollider> ();
-		meshCollider.isTrigger = false;
-
-		cube.layer = 0;
-		cube.tag = "Player";
-
+		mesh.RecalculateNormals();
 		mesh.RecalculateBounds();
 		mesh.Optimize();
 
 
-		return cube as GameObject;
+		MeshRenderer renderer = GetComponent<MeshRenderer> ();
+		renderer.material.color = color;
 	}
 
 
