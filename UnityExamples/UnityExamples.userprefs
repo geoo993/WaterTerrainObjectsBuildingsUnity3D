@@ -1,6 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraMove.cs">
+    <Files>
+      <File FileName="Assets/Scripts/BuildingBuilder.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CityBuilder.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BinarySpaceParticioningSimple.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraMove.cs" Line="22" Column="5" />
+      <File FileName="Assets/Scripts/GenerateCity.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

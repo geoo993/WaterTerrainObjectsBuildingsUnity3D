@@ -9,8 +9,7 @@ public class CityBuilder : MonoBehaviour {
 	
 	public Texture2D[] rgbTextures;
 	private Material[] windowMaterials;
-	
-	private GUIStyle lstyle;
+
 	
 	private float lightDenisity = 0.2f;
 	private int maxBuildingHeight = 70;
@@ -20,9 +19,9 @@ public class CityBuilder : MonoBehaviour {
 	void Start () {
 		city = new GameObject("City");
 		
-		float csqs = 50;
+		float cityscapeQS = 50;
 		
-		float hc = csqs / -2.0f * cellSize;
+		float hc = cityscapeQS / -2.0f * cellSize;
 		
 		int built = 0;
 		
@@ -33,19 +32,19 @@ public class CityBuilder : MonoBehaviour {
 			
 			m.SetTexture("_MainTex", rgbTextures[i]);
 			
-			Texture2D rit = randomIllumTex(rgbTextures[i].width, rgbTextures[i].height);	
-			m.SetTexture("_BumpMap", rit);
+			//Texture2D rit = randomIllumTex(rgbTextures[i].width, rgbTextures[i].height);	
+			//m.SetTexture("_BumpMap", rit);
 			
 			m.SetTextureScale("_MainTex", new Vector2(64,64));
-			m.SetTextureScale("_BumpMap", new Vector2(1,1));
+			//m.SetTextureScale("_BumpMap", new Vector2(1,1));
 			
 			windowMaterials[i] = m;
 		}
 		
-		for(int s = 0; s < csqs; s++) {		
+		for(int s = 0; s < cityscapeQS; s++) {		
 			
-			for(int a = 0; a < csqs; a++) {
-				Color c = plan.GetPixelBilinear(s/csqs, a/csqs);
+			for(int a = 0; a < cityscapeQS; a++) {
+				Color c = plan.GetPixelBilinear(s/cityscapeQS, a/cityscapeQS);
 				if(c.r < 0.05f) continue;
 				
 				float xp = cellSize * s + cellSize/2 * (s / 5);
@@ -95,8 +94,5 @@ public class CityBuilder : MonoBehaviour {
 		return randomIllum;
 	}
 	
-	void OnGUI() {
-		GUI.color = new Color(1,1,1,1);
-		GUI.Label(new Rect(10, 10, 200, 48), "Walk with cursors\nSpace for mega-jump to the roof");
-	}
+
 }

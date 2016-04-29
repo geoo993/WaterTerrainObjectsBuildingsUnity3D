@@ -45,12 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\City\src\BuildingBuilder.cs" />
-     <Compile Include="Assets\City\src\CityBuilder.cs" />
      <Compile Include="Assets\Scripts\AllShapes.cs" />
      <Compile Include="Assets\Scripts\BinarySpaceParticioningSimple.cs" />
+     <Compile Include="Assets\Scripts\BuildingBuilder.cs" />
      <Compile Include="Assets\Scripts\Buildings.cs" />
+     <Compile Include="Assets\Scripts\CameraFlying.cs" />
      <Compile Include="Assets\Scripts\CameraMove.cs" />
+     <Compile Include="Assets\Scripts\CityBuilder.cs" />
      <Compile Include="Assets\Scripts\Collided.cs" />
      <Compile Include="Assets\Scripts\Cone.cs" />
      <Compile Include="Assets\Scripts\ConnectWithLineRenderer.cs" />
