@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class Grid {
+public class Grid2 {
 	
 	private int gridWidth;
 	private int gridHeight;
 	
 	private int[,] grid;
 	
-	public Grid(int _width, int _height){
+	public Grid2(int _width, int _height){
 		gridWidth = _width;
 		gridHeight = _height;
 		

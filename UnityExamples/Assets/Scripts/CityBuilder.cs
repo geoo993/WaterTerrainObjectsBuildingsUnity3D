@@ -8,7 +8,7 @@ public class CityBuilder : MonoBehaviour {
 	public Texture2D plan;
 	
 	public Texture2D[] rgbTextures;
-	private Material[] windowMaterials;
+	//private Material[] windowMaterials;
 
 	
 	private float lightDenisity = 0.2f;
@@ -17,6 +17,7 @@ public class CityBuilder : MonoBehaviour {
 	private GameObject city;
 	
 	void Start () {
+		
 		city = new GameObject("City");
 		
 		float cityscapeQS = 50;
@@ -53,12 +54,11 @@ public class CityBuilder : MonoBehaviour {
 				GameObject b = (GameObject) GameObject.Instantiate(buildingPrefab, new Vector3(hc + xp, 0, hc + yp), Quaternion.identity);
 				b.name = "Building_" + s + "x" + a;
 				b.transform.parent = city.transform;
+
 				BuildingBuilder bt = (BuildingBuilder) b.GetComponent(typeof(BuildingBuilder));
 				
 				int tx = (int)Mathf.Floor(Random.value * rgbTextures.Length);
-				
-				
-				
+
 				bt.Build(
 					(int)(c.r * maxBuildingHeight), 
 					(int)(Random.value * 6 + 6), 
