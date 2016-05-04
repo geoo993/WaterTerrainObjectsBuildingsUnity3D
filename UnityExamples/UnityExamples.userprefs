@@ -1,18 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DynamicCubeMesh.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CityBuilder.cs">
     <Files>
-      <File FileName="Assets/Scripts/DynamicCubeMesh.cs" Line="472" Column="3" />
-      <File FileName="Assets/Scripts/GenerateCity.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CityBuilder.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BuildingBuilder.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BinarySpaceParticioningSimple.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraMove.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tetrahedron.cs" Line="1" Column="1" />
-      <File FileName="../../../../Desktop/DevDocuments/GameDesignLCC/Year3/MajorProject/City/CityBuilding/Assets/Scripts/GeneratingBuildings.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GeneratingBuildings.cs" Line="1" Column="1" />
-      <File FileName="Assets/External/Grid.cs" Line="1" Column="1" />
-      <File FileName="Assets/External/RoundedCube.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BuildingBuilder.cs" Line="13" Column="3" />
+      <File FileName="Assets/Scripts/DynamicCubeMesh.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CityBuilder.cs" Line="39" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

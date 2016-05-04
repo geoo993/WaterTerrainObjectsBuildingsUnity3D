@@ -58,6 +58,8 @@ public class DynamicCubeMesh : MonoBehaviour {
 
 	public Texture2D[] rgbTextures;
 
+	public float upLift = 20;
+
 	void Awake ()
 	{
 		this.name = "dynamic object";
@@ -219,6 +221,8 @@ public class DynamicCubeMesh : MonoBehaviour {
 			for (int x = xSize - 1; x >= 0; x--) {
 				SetVertex(v++, x, y, zSize);
 			}
+
+			//
 			for (int z = zSize - 1; z > 0; z--) {
 				SetVertex(v++, 0, y, z);
 			}
@@ -226,12 +230,13 @@ public class DynamicCubeMesh : MonoBehaviour {
 
 
 
-		// top and bottom
+		// top 
 		for (int z = 1; z < zSize; z++) {
 			for (int x = 1; x < xSize; x++) {
 				SetVertex(v++, x, ySize, z);
 			}
 		}
+		//bottom
 		for (int z = 1; z < zSize; z++) {
 			for (int x = 1; x < xSize; x++) {
 				SetVertex(v++, x, 0, z);
@@ -395,7 +400,7 @@ public class DynamicCubeMesh : MonoBehaviour {
 		material.mainTexture = texture[ randomTexture ];
 		meshRenderer.material = material;
 
-
+//
 //		Material[] windowMaterials = new Material[rgbTextures.Length];
 //		for(int i = 0; i < rgbTextures.Length; i++) {
 //
@@ -454,44 +459,48 @@ public class DynamicCubeMesh : MonoBehaviour {
 
 		//// type 2
 		//for(int x = 0; x < xlength; x++)
-		for (int x = 0; x < newSpheres.Count-1; x++) 
-		{
-			for (int z = 0; z < controlPoints [x].Length; z++)
-			{
-				vertices [controlPoints [x] [z]] = new Vector3(
-				 	newSpheres [x].transform.localPosition.x, 
-					vertices [controlPoints [x] [z]].y, 
-					newSpheres [x].transform.localPosition.z);
-			}
+//		for (int x = 0; x < newSpheres.Count-1; x++) 
+//		{
+//			for (int z = 0; z < controlPoints [x].Length; z++)
+//			{
+//
+//				vertices [controlPoints [x] [z]] = new Vector3(
+//				 	newSpheres [x].transform.localPosition.x, 
+//					vertices [controlPoints [x] [z]].y, 
+//					newSpheres [x].transform.localPosition.z);
+//			}
+//
+//			//clamp y on side spheres
+//			newSpheres [x].transform.localPosition = new Vector3(
+//				 newSpheres [x].transform.localPosition.x,
+//				 Mathf.Clamp (newSpheres [x].transform.localPosition.y, midY, midY),
+//				 newSpheres [x].transform.localPosition.z);
+//
+//		}
+//
+//		for (int y = 0; y < topControlPointIndexes.Count; y++) {
+//
+//			if (poityOrNot){
+//				// do pointy top
+//				vertices [topControlPointIndexes[y]] = newSpheres [newSpheres.Count-1].transform.localPosition ;
+//			} else{
+//				//do normal top
+//				vertices [topControlPointIndexes[y]] = new Vector3(
+//					verticesCopy [topControlPointIndexes[y]].x,
+//				newSpheres [newSpheres.Count-1].transform.localPosition.y,
+//					verticesCopy [topControlPointIndexes[y]].z);
+//			}
+//		}
 
-			//clamp y on side spheres
-			newSpheres [x].transform.localPosition = new Vector3(
-				 newSpheres [x].transform.localPosition.x,
-				 Mathf.Clamp (newSpheres [x].transform.localPosition.y, midY, midY),
-				 newSpheres [x].transform.localPosition.z);
 
-		}
-
-		for (int y = 0; y < topControlPointIndexes.Count; y++) {
-
-			if (poityOrNot){
-				// do pointy top
-				vertices [topControlPointIndexes[y]] = newSpheres [newSpheres.Count-1].transform.localPosition ;
-			} else{
-				//do normal top
-				vertices [topControlPointIndexes[y]] = new Vector3(
-					verticesCopy [topControlPointIndexes[y]].x,
-				newSpheres [newSpheres.Count-1].transform.localPosition.y,
-					verticesCopy [topControlPointIndexes[y]].z);
-			}
-		}
 //		//clamp x and z on topsphere
-		newSpheres [newSpheres.Count-1].transform.localPosition = new Vector3(
-			Mathf.Clamp (newSpheres [newSpheres.Count-1].transform.localPosition.x, (float)topPoint.x, (float)topPoint.x),
-		 	newSpheres [newSpheres.Count-1].transform.localPosition.y, 
-			Mathf.Clamp (newSpheres [newSpheres.Count-1].transform.localPosition.z, (float)topPoint.z, (float)topPoint.z));
-	
-
+//		newSpheres [newSpheres.Count-1].transform.localPosition = new Vector3(
+//			Mathf.Clamp (newSpheres [newSpheres.Count-1].transform.localPosition.x, (float)topPoint.x, (float)topPoint.x),
+//		 	newSpheres [newSpheres.Count-1].transform.localPosition.y, 
+//			Mathf.Clamp (newSpheres [newSpheres.Count-1].transform.localPosition.z, (float)topPoint.z, (float)topPoint.z));
+//	
+//
+//
 
 	}
 
@@ -508,13 +517,13 @@ public class DynamicCubeMesh : MonoBehaviour {
 	void Update()
 	{
 
-		CreateMesh ();
-		UpdateVerticesAndPositions ();
-		CreateTriangles();
-		AddToMesh();
-		CreateColliders();
-
-
+//		CreateMesh ();
+//		UpdateVerticesAndPositions ();
+//		CreateTriangles();
+//		AddToMesh();
+//		CreateColliders();
+//
+//
 //		if (Input.GetMouseButtonDown (0)) {
 //
 //			ray = mainCamera.ScreenPointToRay (Input.mousePosition);

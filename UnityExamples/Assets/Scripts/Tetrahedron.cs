@@ -96,13 +96,14 @@ public class Tetrahedron : MonoBehaviour {
 		meshRigidbody.useGravity = false; 
 		meshRigidbody.isKinematic = false;
 
-
 		mesh.vertices = vertices;
 		mesh.triangles = triangles;
 		mesh.uv = uvs;
 		mesh.RecalculateNormals();
 		mesh.RecalculateBounds();
 		mesh.Optimize();
+
+
 
 	}
 

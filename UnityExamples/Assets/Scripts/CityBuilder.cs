@@ -33,7 +33,7 @@ public class CityBuilder : MonoBehaviour {
 			
 			m.SetTexture("_MainTex", rgbTextures[i]);
 			
-			//Texture2D rit = randomIllumTex(rgbTextures[i].width, rgbTextures[i].height);	
+			Texture2D rit = randomIllumTex(rgbTextures[i].width, rgbTextures[i].height);	
 			//m.SetTexture("_BumpMap", rit);
 			
 			m.SetTextureScale("_MainTex", new Vector2(64,64));
