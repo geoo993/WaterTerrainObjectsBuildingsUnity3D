@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Gizmo.cs" />
      <Compile Include="Assets\Scripts\GizmoPoints.cs" />
      <Compile Include="Assets\Scripts\Grid2.cs" />
+     <Compile Include="Assets\Scripts\Ground.cs" />
      <Compile Include="Assets\Scripts\PerlinNoiseColor.cs" />
      <Compile Include="Assets\Scripts\PerlinNoiseWaveMesh.cs" />
      <Compile Include="Assets\Scripts\Plane.cs" />
@@ -127,6 +128,7 @@
      <None Include="Assets\Scripts\TerrainGenerator\LibNoise\COPYING.txt" />
      <None Include="Assets\External\Rounded Cube Grid.shader" />
      <None Include="Assets\Scripts\TerrainGenerator\LibNoise\COPYING.LESSER.txt" />
+     <None Include="Assets\Shaders\CurvedWorld.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
