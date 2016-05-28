@@ -376,8 +376,7 @@ public class GenerateCity : MonoBehaviour {
 		}
 
 
-
-		//		yield return wait;
+		//yield return wait;
 		//Debug.Break();
 	}
 

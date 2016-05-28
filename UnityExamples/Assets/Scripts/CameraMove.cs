@@ -19,10 +19,10 @@ public class CameraMove : MonoBehaviour {
 	void Update () {
 
 
-		//mw = target.GetComponent<GenerateCity> ().mapWidth;
-		//mh = target.GetComponent<GenerateCity> ().mapHeight;
+		mw = target.GetComponent<GenerateCity> ().mapWidth;
+		mh = target.GetComponent<GenerateCity> ().mapHeight;
 
-		mh = target.GetComponent<Buildings> ().toplengthY + target.GetComponent<Buildings> ().midlengthY;
+		//mh = target.GetComponent<Buildings> ().toplengthY + target.GetComponent<Buildings> ().midlengthY;
 
 		angle += rad * Time.deltaTime;
 		transform.position = new Vector3( (r+mw) * Mathf.Cos (angle), (mh+height), (r+mw) * Mathf.Sin(angle) );
